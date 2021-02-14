@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources><!--HDPI = (MDPI*1.5)-->
+    <dimen name="font_size_m">25px</dimen>
+    <dimen name="font_size_xxxl">60px</dimen>
+    <dimen name="font_size_xxl">45px</dimen>
+    <dimen name="font_size_xl">30px</dimen>
+</resources>

@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Sambalpuri Haat</string>
+    <string name="googleClientID">412691490847-ppd7r25qp599ro6kh571cq0l2oqt7kll.apps.googleusercontent.com</string>
+    <string name="googleClientServer">6Vr014CKZSdhm9A2HkIOnUje</string>
+    <string name="facebook_app_id">606690550037977</string>
+    <string name="fb_login_protocol_scheme">fb606690550037977</string>
+    <string name="mobile_info">We will send you an <b>One Time Password</b>\non this mobile number</string>
+    <string name="removeFromCart"><u>Remove from cart</u></string>
+</resources>

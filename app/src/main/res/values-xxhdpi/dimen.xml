@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="font_size_m">42px</dimen>
+    <dimen name="font_size_xxxl">120px</dimen>
+    <dimen name="font_size_xxl">90px</dimen>
+    <dimen name="font_size_xl">60px</dimen>
+</resources>

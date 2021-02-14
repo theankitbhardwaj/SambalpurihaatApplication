@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/dashboardFragment">
+
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.inces.incesclient.fragments.DashboardFragment"
+        android:label="DashboardFragment"/>
+    <fragment
+        android:id="@+id/userProfileFragment"
+        android:name="com.inces.incesclient.fragments.UserProfileFragment"
+        android:label="UserProfileFragment"/>
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.inces.incesclient.fragments.CartFragment"
+        android:label="CartFragment" />
+</navigation>

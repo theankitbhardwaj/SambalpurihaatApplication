@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+
+    <TextView
+        android:id="@+id/variantTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@id/variantQuantity"
+        android:maxLines="2"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Variant Title"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/variantQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:fontFamily="@font/montserrat" />
+
+
+    <TextView
+        android:id="@+id/oldPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@id/variantPrice"
+        android:fontFamily="@font/montserrat" />
+
+    <TextView
+        android:id="@+id/variantPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="\u20B9 2500"
+        android:textColor="@android:color/black" />
+</RelativeLayout>
