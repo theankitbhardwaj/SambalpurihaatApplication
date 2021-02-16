@@ -1,7 +1,9 @@
 package com.inces.incesclient.activities
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.text.Html
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -22,6 +24,8 @@ import kotlinx.android.synthetic.main.activity_phone_login.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.concurrent.TimeUnit
+import kotlin.math.min
 
 
 class PhoneLogin : AppCompatActivity() {
@@ -47,9 +51,26 @@ class PhoneLogin : AppCompatActivity() {
                     multiBtn.text = "Verify OTP"
                     phoneNumberLayout.visibility = View.GONE
                     otpLayout.visibility = View.VISIBLE
+                    otpResendLayout.visibility = View.VISIBLE
                     val htmlText =
                         Html.fromHtml("Enter the OTP sent to <b>${encryptPhoneNumber(phoneNumber.text.toString())}</b>")
                     text2.text = htmlText.toString()
+
+                    object : CountDownTimer(300000, 1000) {
+                        override fun onTick(millis: Long) {
+                            val minutes: Long = millis / 1000 / 60
+                            val seconds: Long = millis / 1000 % 60
+                            tv_otp_resend.text = "Waiting for OTP... " +minutes+":"+seconds
+                        }
+
+                        override fun onFinish() {
+                            tv_otp_resend.text = "Try resending OTP..."
+                            tv_btn_resend.visibility = View.VISIBLE
+                            tv_btn_resend.setOnClickListener {
+                                recreate()
+                            }
+                        }
+                    }.start()
                 }
             }else{
                 signInWithPhoneNumber()
@@ -107,7 +128,7 @@ class PhoneLogin : AppCompatActivity() {
 
                 }
             })
-    })
+        })
     }
 
     private fun signInWithPhoneNumber() {
@@ -150,10 +171,10 @@ class PhoneLogin : AppCompatActivity() {
                 })
             } else {
                 val phone_no: String = phoneNumber.getText().toString().trim({ it <= ' ' })
-                val user = User("","","mobile",phone_no,UserHelper.uniqueUserId())
-                SharedPrefManager.setLoginWith(this,"mobile", phone_no)
+                val user = User("", "", "mobile", phone_no, UserHelper.uniqueUserId())
+                SharedPrefManager.setLoginWith(this, "mobile", phone_no)
                 val intent = Intent(this@PhoneLogin, UserProfile::class.java)
-                intent.putExtra(Constants.USER_DATA,user)
+                intent.putExtra(Constants.USER_DATA, user)
                 startActivity(intent)
                 finish()
             }

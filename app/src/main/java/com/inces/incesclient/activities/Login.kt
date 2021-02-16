@@ -8,9 +8,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.facebook.*
-import com.facebook.appevents.AppEventsLogger
-import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -37,8 +34,6 @@ class Login : AppCompatActivity() {
     private lateinit var mGoogleSignInClient: GoogleSignInClient
     private var GOOGLE_SIGN_IN = 101
     private val TAG = "LoginFragment"
-    private lateinit var callbackManager: CallbackManager
-    private lateinit var accessTokenTracker: AccessTokenTracker
     private lateinit var mainViewModel: MainViewModel
     private lateinit var progressDialog: ProgressDialog
     private lateinit var bundle: Bundle
@@ -63,15 +58,12 @@ class Login : AppCompatActivity() {
 
         if (UserHelper.isNetworkConnected(this)) {
             googleLogin()
-            facebookLogin()
         } else
             Toast.makeText(this, Constants.NO_INTERNET, Toast.LENGTH_SHORT).show()
 
         otpLogin.setOnClickListener {
             startActivity(Intent(this@Login, PhoneLogin::class.java))
         }
-
-        facebookLayout.setOnClickListener { fbLogin.performClick() }
 
     }
 
@@ -89,81 +81,6 @@ class Login : AppCompatActivity() {
 
         gLogin.setOnClickListener {
             googleSignIn()
-        }
-    }
-
-    private fun facebookLogin() {
-        FacebookSdk.sdkInitialize(this)
-        AppEventsLogger.activateApp(this)
-        callbackManager = CallbackManager.Factory.create()
-
-
-        Log.e(TAG, "facebookLogin: ${AccessToken.getCurrentAccessToken()}")
-        AccessToken.getCurrentAccessToken()?.let {
-            val request =
-                GraphRequest.newMeRequest(AccessToken.getCurrentAccessToken()) { jsonObject: JSONObject, _: GraphResponse ->
-                    val firstName = jsonObject.get("first_name")
-                    val lastName = jsonObject.get("last_name")
-                    val email = jsonObject.get("email")
-                    val id = jsonObject.get("id")
-                    DebugLogHelper.Log(TAG, "$firstName,$lastName,$email,$id")
-                    val user = User(
-                        uid = id as String,
-                        fullname = "$firstName $lastName",
-                        email = email as String,
-                        phone_no = "",
-                        login_with = "facebook"
-                    )
-                    checkIfExistingUser(user)
-//                            goToNextFragment(user)
-                }
-            request.parameters = bundle
-            request.executeAsync()
-        }
-        fbLogin.setReadPermissions(listOf("email", "public_profile"))
-        fbLogin.registerCallback(callbackManager, object : FacebookCallback<LoginResult?> {
-            override fun onSuccess(loginResult: LoginResult?) {
-                Log.e(TAG, "onSuccess: $loginResult")
-            }
-
-            override fun onCancel() {
-                Toast.makeText(this@Login, "Login Request Cancelled", Toast.LENGTH_LONG).show()
-            }
-
-            override fun onError(exception: FacebookException) {
-                Log.e(TAG, "onError: $exception")
-            }
-        })
-
-
-        accessTokenTracker = object : AccessTokenTracker() {
-            override fun onCurrentAccessTokenChanged(
-                oldAccessToken: AccessToken?,
-                currentAccessToken: AccessToken?
-            ) {
-                Log.e(TAG, "onCurrentAccessTokenChanged: $oldAccessToken $currentAccessToken")
-                currentAccessToken?.let {
-                    val request =
-                        GraphRequest.newMeRequest(currentAccessToken) { jsonObject: JSONObject, _: GraphResponse ->
-                            val firstName = jsonObject.get("first_name")
-                            val lastName = jsonObject.get("last_name")
-                            val email = jsonObject.get("email")
-                            val id = jsonObject.get("id")
-                            DebugLogHelper.Log(TAG, "$firstName,$lastName,$email,$id")
-                            val user = User(
-                                uid = id as String,
-                                fullname = "$firstName $lastName",
-                                email = email as String,
-                                phone_no = "",
-                                login_with = "facebook"
-                            )
-                            checkIfExistingUser(user)
-//                            goToNextFragment(user)
-                        }
-                    request.parameters = bundle
-                    request.executeAsync()
-                }
-            }
         }
     }
 
@@ -265,8 +182,6 @@ class Login : AppCompatActivity() {
             val task =
                 GoogleSignIn.getSignedInAccountFromIntent(data)
             handleSignInResult(task)
-        } else {
-            callbackManager.onActivityResult(requestCode, resultCode, data)
         }
     }
 

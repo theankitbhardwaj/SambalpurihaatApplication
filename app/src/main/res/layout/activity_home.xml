@@ -52,10 +52,9 @@
         android:id="@+id/gLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/facebookLayout"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
         android:layout_marginHorizontal="35dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="72dp"
         android:background="@drawable/primary_btn"
         android:orientation="horizontal"
         android:padding="10dp">
@@ -72,41 +71,6 @@
             android:fontFamily="@font/montserrat"
             android:gravity="center"
             android:text="Login with Google"
-            android:textColor="@color/colorPrimary" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/facebookLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:layout_marginHorizontal="35dp"
-        android:layout_marginBottom="25dp"
-        android:background="@drawable/primary_btn"
-        android:padding="10dp">
-
-        <com.facebook.login.widget.LoginButton
-            android:id="@+id/fbLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/com_facebook_favicon_blue" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/montserrat"
-            android:gravity="center"
-            android:text="Login with Facebook"
-            android:textAllCaps="false"
             android:textColor="@color/colorPrimary" />
     </LinearLayout>
 

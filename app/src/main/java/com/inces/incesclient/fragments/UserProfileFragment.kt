@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
-import com.facebook.login.LoginManager
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -55,10 +54,13 @@ class UserProfileFragment : Fragment(R.layout.user_profile_fragment) {
         userEmail.text = user.email
 
         logoutLayout.setOnClickListener {
+            clearDb()
             if (loginWith == "google")
                 googleSignOut()
-            else if (loginWith == "facebook")
-                fbSignOut()
+            val i = Intent(context, Login::class.java)
+            i.flags =
+                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(i)
         }
 
 
@@ -74,15 +76,6 @@ class UserProfileFragment : Fragment(R.layout.user_profile_fragment) {
             }
         }
 
-    }
-
-    private fun fbSignOut() {
-        LoginManager.getInstance().logOut()
-        clearDb()
-        val i = Intent(context, Login::class.java)
-        i.flags =
-            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
-        startActivity(i)
     }
 
     private fun clearDb() {

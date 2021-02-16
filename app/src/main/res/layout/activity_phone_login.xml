@@ -74,7 +74,8 @@
             android:layout_height="55dp"
             android:layout_marginBottom="25dp"
             android:background="@drawable/edittext_bg"
-            android:visibility="gone">
+            android:visibility="gone"
+            tools:visibility="visible">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -90,6 +91,36 @@
                 android:background="@drawable/edittext_bg"
                 android:hint="Enter OTP"
                 android:inputType="number" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/otpResendLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <TextView
+                android:id="@+id/tv_otp_resend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="50dp"
+                android:text="Waiting for otp...5:00" />
+
+            <TextView
+                android:id="@+id/tv_btn_resend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:text=" Resend OTP"
+                android:textAllCaps="false"
+                android:textColor="#304FFE"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                tools:visibility="visible"/>
         </LinearLayout>
 
         <Button

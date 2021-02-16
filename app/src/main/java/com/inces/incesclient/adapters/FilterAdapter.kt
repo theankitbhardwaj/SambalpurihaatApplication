@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.facebook.internal.Mutable
 import com.inces.incesclient.R
 import com.inces.incesclient.models.Product
 import kotlinx.android.synthetic.main.promoted_card.view.*
