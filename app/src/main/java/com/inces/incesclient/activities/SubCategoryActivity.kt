@@ -49,6 +49,7 @@ class SubCategoryActivity : AppCompatActivity() {
         })
     }
 
+
     private fun getSubCategoryProductList(): MutableList<Product>? {
         val list: MutableList<Product> = ArrayList()
         products.forEach {

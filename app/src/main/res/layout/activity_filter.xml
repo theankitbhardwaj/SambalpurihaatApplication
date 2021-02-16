@@ -88,15 +88,39 @@
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
+    <LinearLayout
+        android:id="@+id/subCategoryLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/allCard"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Sub Categories"
+            android:textColor="@android:color/black" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/subCategoryRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" />
+    </LinearLayout>
+
     <TextView
         android:id="@+id/priceHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/allCard"
         android:layout_marginStart="10dp"
         android:layout_marginTop="15dp"
         android:fontFamily="@font/montserrat"
         android:text="Shop by price"
+        android:layout_below="@id/subCategoryLayout"
         android:textColor="@android:color/black" />
 
     <HorizontalScrollView
@@ -171,7 +195,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/scroll"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:fontFamily="@font/montserrat_bold"
         android:text="Promoted Products"
         android:textColor="@android:color/black" />

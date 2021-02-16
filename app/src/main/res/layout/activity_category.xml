@@ -38,36 +38,31 @@
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
 
-    <LinearLayout
-        android:id="@+id/subCategoryLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/toolbar"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_bold"
-            android:text="Sub Categories"
-            android:textColor="@android:color/black" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/subCategoryRecycler"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp" />
-    </LinearLayout>
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/subCategoryProductRecycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/subCategoryLayout"
+        android:layout_below="@+id/toolbar"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
         android:layout_marginHorizontal="10dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginBottom="0dp"
         android:scrollbars="none" />
+
+    <TextView
+        android:id="@+id/tv_noProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"
+        android:text="No Product Available for selected choice"
+        android:textAlignment="center" />
 </RelativeLayout>

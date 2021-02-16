@@ -8,11 +8,15 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.inces.incesclient.R
+import com.inces.incesclient.adapters.DashboardProductAdapter
 import com.inces.incesclient.adapters.FilterAdapter
+import com.inces.incesclient.adapters.SubCategoryAdapter
 import com.inces.incesclient.db.ProductsDB
+import com.inces.incesclient.helpers.ProductHelper
 import com.inces.incesclient.models.Product
 import com.inces.incesclient.repo.MainRepo
 import com.inces.incesclient.util.Constants
@@ -20,6 +24,7 @@ import com.inces.incesclient.util.Resource
 import com.inces.incesclient.viewmodels.MainViewModel
 import com.inces.incesclient.viewmodels.ProductViewModel
 import com.inces.incesclient.viewmodels.factory.ViewModelFactory
+import kotlinx.android.synthetic.main.activity_category.*
 import kotlinx.android.synthetic.main.activity_filter.*
 import kotlinx.android.synthetic.main.activity_product_detail.*
 
@@ -32,6 +37,9 @@ class FilterActivity : AppCompatActivity() {
     private lateinit var mainViewModel: MainViewModel
     private lateinit var supplierProductList: MutableMap<String, MutableList<Product>>
     private lateinit var filterAdapter: FilterAdapter
+    //New Imports
+    private lateinit var subCategoryAdapter: SubCategoryAdapter
+    private lateinit var dashboardProductAdapter: DashboardProductAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -124,9 +132,13 @@ class FilterActivity : AppCompatActivity() {
                     }
                 })
 
-                Glide.with(this)
-                    .load(Constants.IMAGE_URL + categorizedProduct[0].variants[0].image[0].img)
-                    .into(productImage)
+                try{
+                    Glide.with(this)
+                            .load(Constants.IMAGE_URL + categorizedProduct[0].variants[0].image[0].img)
+                            .into(productImage)
+                }catch (e:Exception){
+                    Log.d("TEST",e.message)
+                }
 
                 noOfProducts.text = "${categorizedProduct.size} products"
                 noOfSuppliers.text = "From ${supplierList.size} suppliers"
@@ -139,5 +151,36 @@ class FilterActivity : AppCompatActivity() {
                 }
             } else Toast.makeText(this, "No Product Available", Toast.LENGTH_SHORT).show()
         })
+
+
+        // New Changes
+        dashboardProductAdapter = DashboardProductAdapter()
+
+
+        productViewModel.allProducts.observe(this, Observer {
+            products = it
+            getSubCategoryList()?.let { list ->
+                subCategoryAdapter = SubCategoryAdapter(list, category)
+                subCategoryRecycler.apply {
+                    layoutManager = LinearLayoutManager(
+                                    this@FilterActivity,
+                                    LinearLayoutManager.HORIZONTAL,
+                                    false
+                            )
+                    adapter = subCategoryAdapter
+                }
+            }
+        })
+    }
+
+    // New functions
+
+    private fun getSubCategoryList(): MutableList<String>? {
+        val subCategory: MutableList<String> = ArrayList()
+        products.forEach {
+            if (it.mainCategory == category && !subCategory.contains(it.subCategory))
+                subCategory.add(it.subCategory)
+        }
+        return subCategory
     }
 }

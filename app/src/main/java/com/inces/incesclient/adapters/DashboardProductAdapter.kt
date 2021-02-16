@@ -14,6 +14,7 @@ import com.inces.incesclient.activities.ProductDetail
 import com.inces.incesclient.helpers.ProductHelper
 import com.inces.incesclient.models.Product
 import com.inces.incesclient.util.Constants
+import kotlinx.android.synthetic.main.activity_category.view.*
 import kotlinx.android.synthetic.main.product_card.view.*
 
 class DashboardProductAdapter : RecyclerView.Adapter<DashboardProductAdapter.ViewHolder>() {
@@ -49,6 +50,10 @@ class DashboardProductAdapter : RecyclerView.Adapter<DashboardProductAdapter.Vie
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = differ.currentList[position]
         holder.itemView.apply {
+            if (differ.currentList.size == 0){
+                tv_noProduct.visibility = View.VISIBLE
+                subCategoryProductRecycler.visibility = View.GONE
+            }
             productTitle.text = item.title
             productDescription.text = item.description
             productVendor.text = "Supplier - ${item.supplier_name}"

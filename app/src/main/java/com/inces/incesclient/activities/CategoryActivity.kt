@@ -52,18 +52,6 @@ class CategoryActivity : AppCompatActivity() {
 
         productViewModel.allProducts.observe(this, Observer {
             products = it
-            getSubCategoryList()?.let { list ->
-                subCategoryAdapter = SubCategoryAdapter(list, category)
-                subCategoryRecycler.apply {
-                    layoutManager =
-                        LinearLayoutManager(
-                            this@CategoryActivity,
-                            LinearLayoutManager.HORIZONTAL,
-                            false
-                        )
-                    adapter = subCategoryAdapter
-                }
-            }
             if (price == "-1") {
                 dashboardProductAdapter.differ.submitList(getSubCategoryProductList())
             } else {
@@ -214,15 +202,6 @@ class CategoryActivity : AppCompatActivity() {
                         it.variants,
                     )
                 )
-        }
-        return subCategory
-    }
-
-    private fun getSubCategoryList(): MutableList<String>? {
-        val subCategory: MutableList<String> = ArrayList()
-        products.forEach {
-            if (it.mainCategory == category && !subCategory.contains(it.subCategory))
-                subCategory.add(it.subCategory)
         }
         return subCategory
     }
