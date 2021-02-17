@@ -121,6 +121,7 @@ class ProductDetail : AppCompatActivity(), VariantAdapter.BreakDownListener {
                             it.vendorName,
                             it.termAndCondition,
                             it.title,
+                                it.category,
                             it.variants,
                         )
                     )

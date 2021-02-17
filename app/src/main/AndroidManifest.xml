@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.inces.incesclient">
 
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -12,23 +13,56 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.FilterActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".activities.SubCategoryActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".activities.CategoryActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".activities.MyOrders" android:screenOrientation="portrait"/>
-        <activity android:name=".activities.Search" android:screenOrientation="portrait"/>
-        <activity android:name=".activities.Splash" android:screenOrientation="portrait">
+
+        <!--
+               Set to true if your app is Standalone, that is, it does not require the handheld
+               app to run.
+        -->
+
+        <activity
+            android:name=".activities.Level3CategoryActivity"
+            android:label="@string/title_activity_level3_category">
+        </activity>
+        <activity
+            android:name=".activities.FilterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.SubCategoryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.CategoryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.MyOrders"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.Search"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.Splash"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.ProductDetail" android:screenOrientation="portrait"/>
-        <activity android:name=".activities.UserProfile" android:screenOrientation="portrait"/>
-        <activity android:name=".activities.PhoneLogin" android:screenOrientation="portrait"/>
-        <activity android:name=".activities.Login" android:screenOrientation="portrait"/>
-        <activity android:name=".activities.Dashboard" android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activities.ProductDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.UserProfile"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.PhoneLogin"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.Login"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.Dashboard"
+            android:screenOrientation="portrait" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

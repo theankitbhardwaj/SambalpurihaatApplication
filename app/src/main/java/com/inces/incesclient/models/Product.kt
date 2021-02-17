@@ -12,6 +12,7 @@ data class Product(
     val supplier_name: String,
     val terms_condition: String,
     val title: String,
+    val category: String,
     var variants: List<Variant>,
 ) : Serializable {
     override fun toString(): String {

@@ -41,6 +41,7 @@ class Search : AppCompatActivity() {
                         db.vendorName,
                         db.termAndCondition,
                         db.title,
+                            db.category,
                         db.variants,
                     )
                 )

@@ -25,7 +25,6 @@ class CategoryActivity : AppCompatActivity() {
     private lateinit var price: String
     private val productViewModel: ProductViewModel by viewModels()
     private lateinit var products: List<ProductsDB>
-    private lateinit var subCategoryAdapter: SubCategoryAdapter
     private lateinit var dashboardProductAdapter: DashboardProductAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +37,6 @@ class CategoryActivity : AppCompatActivity() {
 
         category = intent.extras?.get("category").toString()
         price = intent.extras?.get("price").toString()
-
         dashboardProductAdapter = DashboardProductAdapter()
 
         search.setOnClickListener {
@@ -83,6 +81,7 @@ class CategoryActivity : AppCompatActivity() {
                                             it.vendorName,
                                             it.termAndCondition,
                                             it.title,
+                                                it.category,
                                             it.variants,
                                         )
                                     )
@@ -100,6 +99,7 @@ class CategoryActivity : AppCompatActivity() {
                                             it.vendorName,
                                             it.termAndCondition,
                                             it.title,
+                                                it.category,
                                             it.variants,
                                         )
                                     )
@@ -117,6 +117,7 @@ class CategoryActivity : AppCompatActivity() {
                                             it.vendorName,
                                             it.termAndCondition,
                                             it.title,
+                                                it.category,
                                             it.variants,
                                         )
                                     )
@@ -138,6 +139,7 @@ class CategoryActivity : AppCompatActivity() {
                                             it.vendorName,
                                             it.termAndCondition,
                                             it.title,
+                                                it.category,
                                             it.variants,
                                         )
                                     )
@@ -155,6 +157,7 @@ class CategoryActivity : AppCompatActivity() {
                                             it.vendorName,
                                             it.termAndCondition,
                                             it.title,
+                                                it.category,
                                             it.variants,
                                         )
                                     )
@@ -172,6 +175,7 @@ class CategoryActivity : AppCompatActivity() {
                                             it.vendorName,
                                             it.termAndCondition,
                                             it.title,
+                                                it.category,
                                             it.variants,
                                         )
                                     )
@@ -199,6 +203,7 @@ class CategoryActivity : AppCompatActivity() {
                         it.vendorName,
                         it.termAndCondition,
                         it.title,
+                        it.category,
                         it.variants,
                     )
                 )
@@ -213,4 +218,6 @@ class CategoryActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
+
 }

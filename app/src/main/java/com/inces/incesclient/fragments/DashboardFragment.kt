@@ -290,6 +290,7 @@ class DashboardFragment : Fragment(R.layout.dashboard_fragment_layout) {
                                 mainCategory = product.main_category,
                                 subCategory = product.sub_category,
                                 baseName = product.base_name,
+                                category = product.category,
                                 termAndCondition = product.terms_condition
                             )
                         )
@@ -302,7 +303,7 @@ class DashboardFragment : Fragment(R.layout.dashboard_fragment_layout) {
                                 val categoryList: MutableList<CategoryItem> = ArrayList()
                                 result.data?.body()?.MainCategory?.let {
                                     it.forEach { item ->
-                                        //if (!productCategory.contains(item.category_name))
+                                        if (productCategory.contains(item.category_name))
                                             categoryList.add(item)
                                     }
                                     categoryAdapter.differ.submitList(categoryList)

@@ -4,4 +4,10 @@
     <string name="googleClientServer">6Vr014CKZSdhm9A2HkIOnUje</string>
     <string name="mobile_info">We will send you an <b>One Time Password</b>\non this mobile number</string>
     <string name="removeFromCart"><u>Remove from cart</u></string>
+    <string name="title_activity_level3_category">Level3CategoryActivity</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
 </resources>

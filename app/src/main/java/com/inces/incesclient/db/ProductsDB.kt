@@ -36,8 +36,8 @@ data class ProductsDB(
     @ColumnInfo(name = "subCategory")
     var subCategory: String,
 
-//    @ColumnInfo(name= "category")
-//    var category: String,
+    @ColumnInfo(name= "category")
+    var category: String,
 
     @ColumnInfo(name = "variants")
     var variants: List<Variant>

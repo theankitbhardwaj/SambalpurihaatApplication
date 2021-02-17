@@ -39,7 +39,6 @@ class FilterActivity : AppCompatActivity() {
     private lateinit var filterAdapter: FilterAdapter
     //New Imports
     private lateinit var subCategoryAdapter: SubCategoryAdapter
-    private lateinit var dashboardProductAdapter: DashboardProductAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -91,6 +90,7 @@ class FilterActivity : AppCompatActivity() {
                                 it.vendorName,
                                 it.termAndCondition,
                                 it.title,
+                                it.category,
                                 it.variants,
                             )
                         )
@@ -154,9 +154,6 @@ class FilterActivity : AppCompatActivity() {
 
 
         // New Changes
-        dashboardProductAdapter = DashboardProductAdapter()
-
-
         productViewModel.allProducts.observe(this, Observer {
             products = it
             getSubCategoryList()?.let { list ->
